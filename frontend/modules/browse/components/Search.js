@@ -108,8 +108,6 @@ class Search extends React.Component {
       </div>
     );
 
-    console.log(qs)
-
     return (
       <div className="container">
         <div className="row">

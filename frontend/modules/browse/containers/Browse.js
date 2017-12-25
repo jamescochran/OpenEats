@@ -67,25 +67,21 @@ class Browse extends React.Component {
   };
 
   parseFilters = (query) => {
-    let filter = DefaultFilters;
+    let filter = {};
+
+    if (Object.keys(DefaultFilters).length > 0) {
+      for (let key in DefaultFilters) {
+        filter[key] = DefaultFilters[key];
+      }
+    }
+
     if (Object.keys(query).length > 0) {
       for (let key in query) {
         filter[key] = query[key];
       }
     }
-    const map = {
-      'cuisine': 'cuisine__slug',
-      'course': 'course__slug'
-    };
 
-    let parsed_filter = {};
-    for (let f in filter) {
-      if (filter[f] !== null) {
-        parsed_filter[f in map ? map[f] : f] = filter[f];
-      }
-    }
-
-    return parsed_filter
+    return filter
   };
 
   render() {
