@@ -88,7 +88,7 @@ class Browse extends React.Component {
     let { search, courses, cuisines, ratings } = this.props;
     let { filterActions, searchActions } = this.props;
 
-    if (search.length > 0) {
+    if (search.recipes.length > 0) {
       return (
           <Search
             search={ search }

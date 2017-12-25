@@ -1,9 +1,12 @@
 import SearchConstants from '../constants/SearchConstants'
 
-function search(state = [], action) {
+function search(state = { recipes: [], totalRecipes: 0 }, action) {
   switch (action.type) {
     case SearchConstants.BROWSE_SEARCH_LOAD:
-      return action.res.results;
+      return {
+        recipes: action.res.results,
+        totalRecipes: action.res.count
+      };
     default:
       return state;
   }

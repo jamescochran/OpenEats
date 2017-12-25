@@ -21,13 +21,7 @@ class Search extends React.Component {
     super(props);
 
     this.state = {
-      // recipes: [],
-      total_recipes: 8,
       show_mobile_filters: false,
-      // filter: {},
-      // courses: [],
-      // cuisines: [],
-      // ratings: []
     };
   }
 
@@ -133,7 +127,7 @@ class Search extends React.Component {
             </div>
             <div id="browse" className="row">
               {
-                search === undefined || search.length == 0 ?
+                search.recipes === undefined || search.recipes.length == 0 ?
                   <div className="spinner">
                     <h3 className="no-results">{ formatMessage(messages.no_results) }</h3>
                     <Spinner className="spinner-obj" spinnerName="circle" noFadeIn />
@@ -141,14 +135,14 @@ class Search extends React.Component {
                 :
                   <ListRecipes
                     format="col-xs-12 col-sm-6 col-md-4 col-lg-3"
-                    data={ search }
+                    data={ search.recipes }
                   />
               }
             </div>
             <div className="row">
               <div className="col-xs-12">
                 <Pagination limit={ qs.limit }
-                            count={ this.state.total_recipes }
+                            count={ search.totalRecipes }
                             offset={ qs.offset }
                             filter={ this.doFilter }
                 />
