@@ -68,4 +68,4 @@ class Pagination extends React.Component {
   }
 }
 
-module.exports.Pagination = injectIntl(Pagination);
+export default injectIntl(Pagination);

@@ -61,4 +61,4 @@ ListRecipes.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-module.exports = ListRecipes;
+export default ListRecipes;

@@ -100,4 +100,4 @@ class SearchBar extends React.Component {
   }
 }
 
-module.exports.SearchBar = injectIntl(SearchBar);
+export default injectIntl(SearchBar);

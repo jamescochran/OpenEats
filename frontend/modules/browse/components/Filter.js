@@ -97,4 +97,4 @@ class Filter extends React.Component {
   }
 }
 
-module.exports.Filter = injectIntl(Filter);
+export default injectIntl(Filter);

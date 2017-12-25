@@ -46,4 +46,4 @@ MiniBrowse.propTypes = {
   qs: PropTypes.string.isRequired
 };
 
-module.exports = MiniBrowse;
+export default MiniBrowse;
