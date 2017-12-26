@@ -1,5 +1,7 @@
 import React from 'react'
 
+require("./../css/pagination.scss");
+
 class Pagination extends React.Component {
   onClick = (event) => {
     event.preventDefault();
@@ -41,14 +43,14 @@ class Pagination extends React.Component {
     let previous = offset - limit;
 
     return (
-      <nav aria-label="Page navigation example">
+      <div className="browse-pagination">
         <ul className="pagination">
           { (previous >= 0) ? this.link('←', previous, 'previous') : '' }
           { this.link('1', 0, 'first') }
           { this.numbers(offset, limit, count) }
           { (next < count) ? this.link('→', next, 'next') : '' }
         </ul>
-      </nav>
+      </div>
     )
   }
 }
