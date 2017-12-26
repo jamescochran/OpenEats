@@ -1,6 +1,4 @@
 import React from 'react'
-import classNames from 'classnames';
-import SmoothCollapse from 'react-smooth-collapse';
 import Spinner from 'react-spinkit';
 import {
     injectIntl,
@@ -9,22 +7,13 @@ import {
     formatMessage
 } from 'react-intl';
 
-import Filter from './Filter'
-import SearchBar from './SearchBar'
 import ListRecipes from './ListRecipes'
 import Pagination from './Pagination'
+import SearchMenu from './SearchMenu'
 
 require("./../css/browse.scss");
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      show_mobile_filters: false,
-    };
-  }
-
   doFilter = (name, value) => {
     // Get a deep copy of the filter state
     let filters = JSON.parse(JSON.stringify(this.props.qs));
@@ -41,10 +30,6 @@ class Search extends React.Component {
     this.props.updateURL(filters)
   };
 
-  toggleMobileFilters = () =>  {
-    this.setState({show_mobile_filters: !this.state.show_mobile_filters});
-  };
-
   render() {
     const { formatMessage } = this.props.intl;
     const messages = defineMessages({
@@ -56,75 +41,18 @@ class Search extends React.Component {
     });
 
     let { search, courses, cuisines, ratings, qs } = this.props;
-    let { filterActions, searchActions } = this.props;
-
-    let header = (
-      <span>
-        Show Filters
-        <span className="glyphicon glyphicon-chevron-down pull-right"/>
-      </span>
-    );
-    if (this.state.show_mobile_filters) {
-      header = (
-        <span>
-          Hide Filters
-          <span className="glyphicon glyphicon-chevron-up pull-right"/>
-        </span>
-      );
-    }
-
-    let filters = (
-      <div className={ classNames(
-          "row",
-          "sidebar",
-        ) }>
-        <div className="col-sm-12 col-xs-4">
-          <Filter title="course"
-                  data={ courses || [] }
-                  filter={ qs }
-                  doFilter={ this.doFilter }
-          />
-        </div>
-        <div className="col-sm-12 col-xs-4">
-          <Filter title="cuisine"
-                  data={ cuisines || [] }
-                  filter={ qs }
-                  doFilter={ this.doFilter }
-          />
-        </div>
-        <div className="col-sm-12 col-xs-4">
-          <Filter title="rating"
-                data={ ratings || [] }
-                filter={ qs }
-                doFilter={ this.doFilter }
-          />
-        </div>
-      </div>
-    );
 
     return (
       <div className="container">
+        <SearchMenu
+          courses={ courses }
+          cuisines={ cuisines }
+          ratings={ ratings }
+          qs={ qs }
+          doFilter={ this.doFilter }
+        />
         <div className="row">
-          <div className="col-sm-2 col-xs-12">
-            <div className="hidden-xs">
-              { filters }
-            </div>
-
-            <div className="visible-xs sidebar-header" onClick={ this.toggleMobileFilters }>
-              { header }
-            </div>
-            <div className="visible-xs">
-              <SmoothCollapse
-                expanded={this.state.show_mobile_filters}
-                heightTransition=".5s ease">
-                { filters }
-              </SmoothCollapse>
-            </div>
-          </div>
-          <div className="col-sm-10 col-xs-12">
-            <div className="row">
-              <SearchBar format="col-xs-12" value={ qs.search } filter={ this.doFilter }/>
-            </div>
+          <div className="col-xs-12">
             <div id="browse" className="row">
               {
                 search.recipes === undefined || search.recipes.length == 0 ?
