@@ -95,7 +95,7 @@ class Browse extends React.Component {
             courses={ courses }
             cuisines={ cuisines }
             ratings={ ratings }
-            qs={ queryString.parse(this.props.location.search) }
+            qs={ this.parseFilters(queryString.parse(this.props.location.search)) }
             updateURL={ this.updateURL }
             filterActions={ filterActions }
             searchActions={ searchActions }
