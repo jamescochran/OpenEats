@@ -40,7 +40,7 @@ class Search extends React.Component {
       }
     });
 
-    let { search, courses, cuisines, ratings, qs } = this.props;
+    let { search, courses, cuisines, ratings, defaults, qs } = this.props;
 
     return (
       <div className="container">
@@ -49,6 +49,8 @@ class Search extends React.Component {
           cuisines={ cuisines }
           ratings={ ratings }
           qs={ qs }
+          defaults={ defaults }
+          count={ search.totalRecipes }
           doFilter={ this.doFilter }
         />
         <div className="row">
@@ -69,10 +71,11 @@ class Search extends React.Component {
             </div>
             <div className="row">
               <div className="col-xs-12">
-                <Pagination limit={ qs.limit }
-                            count={ search.totalRecipes }
-                            offset={ qs.offset }
-                            filter={ this.doFilter }
+                <Pagination
+                  limit={ qs.limit }
+                  count={ search.totalRecipes }
+                  offset={ qs.offset }
+                  filter={ this.doFilter }
                 />
               </div>
             </div>

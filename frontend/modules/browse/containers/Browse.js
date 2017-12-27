@@ -27,6 +27,8 @@ class Browse extends React.Component {
     let nextQuery = queryString.parse(nextProps.location.search);
     if (query.offset !== nextQuery.offset) {
       this.reloadData(nextQuery);
+    } else if (query.limit !== nextQuery.limit) {
+      this.reloadData(nextQuery);
     } else if (query.offset !== nextQuery.offset) {
       this.reloadData(nextQuery);
     } else if (query.course !== nextQuery.course) {
@@ -95,6 +97,7 @@ class Browse extends React.Component {
             courses={ courses }
             cuisines={ cuisines }
             ratings={ ratings }
+            defaults={ DefaultFilters }
             qs={ this.parseFilters(queryString.parse(this.props.location.search)) }
             updateURL={ this.updateURL }
             filterActions={ filterActions }

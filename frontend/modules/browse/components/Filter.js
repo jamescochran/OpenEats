@@ -6,26 +6,15 @@ import {
     formatMessage
 } from 'react-intl';
 import classNames from 'classnames';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 require("./../css/filter.scss");
 
 class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: this.props.data || [],
-      loading: false,
-      filter: {}
-    };
-
-    this._onClick = this._onClick.bind(this);
-  }
-
-  _onClick(event) {
+  onClick = (event) => {
     event.preventDefault();
     this.props.doFilter(this.props.title, event.target.name);
-  }
+  };
 
   render() {
     const {formatMessage} = this.props.intl;
@@ -58,41 +47,36 @@ class Filter extends React.Component {
       }
 
       return (
-        <a
-          className={ classNames(
-            "list-group-item",
-            {active: this.props.filter[this.props.title] === item.slug.toString()}
-          ) }
-          href="#"
+        <MenuItem
+          className={classNames({
+            active: this.props.filter[this.props.title] === item.slug.toString()
+          })}
           key={ item.slug }
+          eventKey={ item.slug }
           name={ item.slug }
-          onClick={ this._onClick }
+          onClick={ this.onClick }
         >
           { item.title }
-          <div className="clear"/>
-          <span className="badge">{ item.total }</span>
-        </a>
+          <span className="badge">{item.total}</span>
+        </MenuItem>
       );
     });
 
     return (
-      <div className="list-group filter">
-         <p className="list-group-item disabled">
-           <b className="hidden-xs">{ formatMessage(messages.filter_x, {title: this.props.title }) }</b>
-           <b className="visible-xs">{ this.props.title }</b>
-         </p>
+      <DropdownButton id="1" title={formatMessage(messages.filter_x, {title: this.props.title})}>
         { items }
         { this.props.filter[this.props.title] ?
-          <a className="list-group-item clear-filter"
-             href="#"
-             name={ '' }
-             key={ 9999999999999999 }
-             onClick={ this._onClick }>
-            { formatMessage(messages.clear_filter) }
-          </a>
+          <MenuItem
+            className="clear-filter"
+            name={''}
+            eventKey={'clear'}
+            onClick={this.onClick}
+          >
+            {formatMessage(messages.clear_filter)}
+          </MenuItem>
           : ''
         }
-      </div>
+      </DropdownButton>
     );
   }
 }
