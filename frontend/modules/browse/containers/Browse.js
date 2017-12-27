@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import queryString from 'query-string'
 
 import history from '../../common/history'
-import Loading from '../../base/components/Loading'
 import Search from '../components/Search'
 import * as SearchActions from '../actions/SearchActions'
 import * as FilterActions from '../actions/FilterActions'
@@ -90,23 +89,19 @@ class Browse extends React.Component {
     let { search, courses, cuisines, ratings } = this.props;
     let { filterActions, searchActions } = this.props;
 
-    if (search.recipes.length > 0) {
-      return (
-          <Search
-            search={ search }
-            courses={ courses }
-            cuisines={ cuisines }
-            ratings={ ratings }
-            defaults={ DefaultFilters }
-            qs={ this.parseFilters(queryString.parse(this.props.location.search)) }
-            updateURL={ this.updateURL }
-            filterActions={ filterActions }
-            searchActions={ searchActions }
-          />
-      );
-    } else {
-      return ( <Loading message="Loading"/> )
-    }
+    return (
+      <Search
+        search={ search }
+        courses={ courses }
+        cuisines={ cuisines }
+        ratings={ ratings }
+        defaults={ DefaultFilters }
+        qs={ this.parseFilters(queryString.parse(this.props.location.search)) }
+        updateURL={ this.updateURL }
+        filterActions={ filterActions }
+        searchActions={ searchActions }
+      />
+    );
   }
 }
 
