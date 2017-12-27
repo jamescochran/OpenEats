@@ -28,6 +28,8 @@ class Browse extends React.Component {
       this.reloadData(nextQuery);
     } else if (query.limit !== nextQuery.limit) {
       this.reloadData(nextQuery);
+    } else if (query.ordering !== nextQuery.ordering) {
+      this.reloadData(nextQuery);
     } else if (query.offset !== nextQuery.offset) {
       this.reloadData(nextQuery);
     } else if (query.course !== nextQuery.course) {

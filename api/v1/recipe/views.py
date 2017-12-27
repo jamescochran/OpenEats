@@ -25,9 +25,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = serializers.RecipeSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_fields = ('course__slug', 'cuisine__slug', 'course', 'cuisine', 'title', 'rating')
     search_fields = ('title', 'tags__title', 'ingredient_groups__ingredients__title')
+    ordering_fields = ('pub_date', 'title', 'rating', )
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

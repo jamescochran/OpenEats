@@ -79,6 +79,16 @@ class SearchMenu extends React.Component {
             filter={ qs }
             doFilter={ doFilter }
           />
+          <Filter
+            title="ordering"
+            data={[
+              {id: 1, total: 3, title: "title", slug: "-title"},
+              {id: 2, total: 3, title: "pub_date", slug: "pub_date"},
+              {id: 3, total: 3, title: "rating", slug: "-rating"},
+            ]}
+            filter={ qs }
+            doFilter={ doFilter }
+          />
           { !this.showReset() ? this.reset() : '' }
           <div className="page-count">
             { count } recipes
