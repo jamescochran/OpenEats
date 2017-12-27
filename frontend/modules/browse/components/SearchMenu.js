@@ -46,7 +46,6 @@ class SearchMenu extends React.Component {
   render() {
     let { courses, cuisines, ratings, qs, count } = this.props;
     let { doFilter } = this.props;
-    console.log(qs);
 
     return (
       <div className="row search-menu">
