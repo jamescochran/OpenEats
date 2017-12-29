@@ -1,21 +1,19 @@
 import SearchConstants from '../constants/SearchConstants'
 
-function search(state = { recipes: {} }, action) {
+function search(state = [], action) {
   switch (action.type) {
     case SearchConstants.BROWSE_SEARCH_LOAD:
-      if (action.res) {
-        let newSearch = {};
-        newSearch[action.qs] = {
-          recipes: action.res.results,
-          totalRecipes: action.res.count
-        };
+      let newSearch = {};
+        console.log(action.qs)
+      newSearch[action.qs] = {
+        recipes: action.res.results,
+        totalRecipes: action.res.count
+      };
 
-        return {
-          ...state,
-          ...newSearch
-        };
-      }
-      return state;
+      return {
+        ...state,
+        ...newSearch
+      };
     default:
       return state;
   }

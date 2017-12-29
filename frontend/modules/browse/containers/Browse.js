@@ -44,7 +44,13 @@ class Browse extends React.Component {
   }
 
   reloadData(qs) {
-    this.props.searchActions.loadRecipes(this.parseFilters(qs));
+    console.log('-----------------')
+    console.log(this.props.search[this.parseFilters(qs)])
+    console.log(this.props.search[queryString.stringify(this.parseFilters(qs))])
+    console.log('-----------------')
+    if (!this.props.search[queryString.stringify(this.parseFilters(qs))]) {
+      this.props.searchActions.loadRecipes(this.parseFilters(qs));
+    }
     this.props.filterActions.loadCourses(this.parseFilters(qs));
     this.props.filterActions.loadCuisines(this.parseFilters(qs));
     this.props.filterActions.loadRatings(this.parseFilters(qs));
@@ -90,15 +96,20 @@ class Browse extends React.Component {
   render() {
     let { search, courses, cuisines, ratings } = this.props;
     let { filterActions, searchActions } = this.props;
-    qs =
+    const qs = this.parseFilters(queryString.parse(this.props.location.search));
+    const qsString = queryString.stringify(qs);
+    console.log('=============')
+    console.log(search)
+    console.log(qsString)
+    console.log('=============')
     return (
       <Search
-        search={ search[] }
+        search={ search[qsString] || {} }
         courses={ courses }
         cuisines={ cuisines }
         ratings={ ratings }
         defaults={ DefaultFilters }
-        qs={ this.parseFilters(queryString.parse(this.props.location.search)) }
+        qs={ qs }
         updateURL={ this.updateURL }
         filterActions={ filterActions }
         searchActions={ searchActions }

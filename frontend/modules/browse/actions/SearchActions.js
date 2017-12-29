@@ -1,3 +1,5 @@
+import queryString from 'query-string'
+
 import SearchConstants from '../constants/SearchConstants'
 import { request } from '../../common/CustomSuperagent';
 import { serverURLs } from '../../common/config'
@@ -24,7 +26,7 @@ export const loadRecipes = (filter) => {
       .then(res => (
         dispatch({
           type: SearchConstants.BROWSE_SEARCH_LOAD,
-          qs: parsedFilter,
+          qs: queryString.stringify(filter),
           res: res.body
         })
       ));
