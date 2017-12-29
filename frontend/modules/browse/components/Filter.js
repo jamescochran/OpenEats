@@ -57,7 +57,7 @@ class Filter extends React.Component {
           onClick={ this.onClick }
         >
           { item.title }
-          <span className="badge">{item.total}</span>
+          { item.total ? <span className="badge">{ item.total }</span> : '' }
         </MenuItem>
       );
     });

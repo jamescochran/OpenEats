@@ -72,9 +72,9 @@ class SearchMenu extends React.Component {
           <Filter
             title="limit"
             data={[
-              {id: 1, total: 3, title: "2", slug: "2"},
-              {id: 2, total: 3, title: "6", slug: "6"},
-              {id: 3, total: 3, title: "12", slug: "12"},
+              {id: 1, title: "2", slug: "2"},
+              {id: 2, title: "6", slug: "6"},
+              {id: 3, title: "12", slug: "12"},
             ]}
             filter={ qs }
             doFilter={ doFilter }
@@ -82,9 +82,9 @@ class SearchMenu extends React.Component {
           <Filter
             title="ordering"
             data={[
-              {id: 1, total: 3, title: "title", slug: "-title"},
-              {id: 2, total: 3, title: "pub_date", slug: "pub_date"},
-              {id: 3, total: 3, title: "rating", slug: "-rating"},
+              {id: 1, title: "title", slug: "-title"},
+              {id: 2, title: "pub_date", slug: "pub_date"},
+              {id: 3, title: "rating", slug: "-rating"},
             ]}
             filter={ qs }
             doFilter={ doFilter }
