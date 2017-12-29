@@ -90,10 +90,10 @@ class Browse extends React.Component {
   render() {
     let { search, courses, cuisines, ratings } = this.props;
     let { filterActions, searchActions } = this.props;
-
+    qs =
     return (
       <Search
-        search={ search }
+        search={ search[] }
         courses={ courses }
         cuisines={ cuisines }
         ratings={ ratings }

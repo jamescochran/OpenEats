@@ -11,19 +11,20 @@ export const loadRecipes = (filter) => {
       'course': 'course__slug'
     };
 
-    let parsed_filter = {};
+    let parsedFilter = {};
     for (let f in filter) {
       if (filter[f] !== null) {
-        parsed_filter[f in map ? map[f] : f] = filter[f];
+        parsedFilter[f in map ? map[f] : f] = filter[f];
       }
     }
 
     request()
       .get(serverURLs.browse)
-      .query(parsed_filter)
+      .query(parsedFilter)
       .then(res => (
         dispatch({
           type: SearchConstants.BROWSE_SEARCH_LOAD,
+          qs: parsedFilter,
           res: res.body
         })
       ));
